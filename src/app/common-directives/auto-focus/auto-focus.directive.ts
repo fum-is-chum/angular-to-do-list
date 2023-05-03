@@ -8,7 +8,9 @@ export class AutoFocusDirective {
   constructor(private host: ElementRef) { }
 
   ngOnInit() {
-    this.host.nativeElement.focus();
+    setTimeout(() => {
+      this.host.nativeElement.focus();
+    })
   }
 
 }

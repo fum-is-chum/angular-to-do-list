@@ -18,7 +18,7 @@
       </div>
     </div>
   </ng-container>
-  <ng-template #hasActivity>
-    <activity-list *ngIf="!activityIsLoading" [activities]="activityList$ | async"></activity-list>
-  </ng-template>
 </div>
+<ng-template #hasActivity>
+  <activity-list [activities]="activityList$ | async"></activity-list>
+</ng-template>

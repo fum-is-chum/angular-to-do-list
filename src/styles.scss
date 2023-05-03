@@ -29,13 +29,17 @@ ngb-toast.toast {
     letter-spacing: 0em;
 
     border-radius: 12px;
-    background-color: white;
     font-size: 15px;
 
-    i::before{
+    i {
       font-size: 15px;
       margin-right: 10px;
-      color: #16abf8;
+      &.bi-exclamation-circle::before {
+        color: #16abf8;
+      }
+      &.bi-exclamation-triangle::before {
+        color: #ed4c5c;
+      }
     }
   }
 }

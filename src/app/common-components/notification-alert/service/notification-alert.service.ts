@@ -14,10 +14,18 @@ export class NotificationAlertService {
   }
 
   alert(body: string) {
-    if(this.alertListSubject.value.length > 3) {
+    console.log(this.alertListSubject.value)
+    if (this.alertListSubject.value.length > 3) {
       this.alertListSubject.value.pop();
     }
-    this.alertListSubject.next([...this.alertListSubject.value, { body, show: true }].reverse())
+    this.alertListSubject.next([...this.alertListSubject.value, { body, show: true, iconClass: 'bi bi-exclamation-circle' }])
+  }
+
+  errorAlert(body: string) {
+    if (this.alertListSubject.value.length > 3) {
+      this.alertListSubject.value.pop();
+    }
+    this.alertListSubject.next([...this.alertListSubject.value, { body, show: true, iconClass: 'bi bi-exclamation-triangle' }])
   }
 
   close(index: number) {

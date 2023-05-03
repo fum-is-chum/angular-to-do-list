@@ -8,7 +8,7 @@ import { NotificationAlertService } from './service/notification-alert.service';
   styleUrls: ['./notification-alert.component.scss']
 })
 export class NotificationAlertComponent implements OnInit {
-
+  public autohide = true;
   constructor(
     private _notificationAlertService: NotificationAlertService
   ) { }

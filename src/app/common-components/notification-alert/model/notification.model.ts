@@ -8,4 +8,5 @@ export interface ToastInfo {
   body: string;
   delay?: number;
   show: boolean;
+  iconClass?: string;
 }

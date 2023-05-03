@@ -1,19 +1,18 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { Activity, ActivityList } from "../models/activity.model";
-import { environment } from "src/environments/environment";
+import { Todo } from "../models/to-do.model";
 
 @Injectable()
-export class ActivityService {
+export class TodoService {
   constructor(
     private _http: HttpClient
   ) {
 
   }
 
-  getActivities(): Promise<ActivityList> {
+  addTodo(data: Todo): Promise<Todo> {
     return new Promise((resolve, reject) => {
-      this._http.get<ActivityList>(`/activity-groups?email=${encodeURI(environment.email)}`, { responseType: 'json' })
+      this._http.post<Todo>(`/todo-items`, data, { responseType: 'json' })
         .subscribe({
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
@@ -22,9 +21,9 @@ export class ActivityService {
     })
   }
 
-  getActivity(id: number): Promise<Activity> {
+  getTodos(activity_group_id: number): Promise<Todo[]> {
     return new Promise((resolve, reject) => {
-      this._http.get<Activity>(`/activity-groups/${id}`, { responseType: 'json' })
+      this._http.get<Todo[]>(`/todo-items?activity_group_id=${encodeURI(activity_group_id.toString())}`)
         .subscribe({
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
@@ -33,9 +32,9 @@ export class ActivityService {
     })
   }
 
-  addActivity(data: Activity): Promise<Activity> {
+  getTodo(id: number): Promise<Todo> {
     return new Promise((resolve, reject) => {
-      this._http.post<Activity>(`/activity-groups`, data, { responseType: 'json' })
+      this._http.get<Todo>(`/todo-items/${id}`, { responseType: 'json' })
         .subscribe({
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
@@ -44,9 +43,9 @@ export class ActivityService {
     })
   }
 
-  removeActivity(id: number): Promise<void> {
+  updateTodo(data: Todo): Promise<Todo> {
     return new Promise((resolve, reject) => {
-      this._http.delete<void>(`/activity-groups/${id}`, { responseType: 'json' })
+      this._http.patch<Todo>(`/todo-items/${data.id}`, data, { responseType: 'json' })
         .subscribe({
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
@@ -55,9 +54,9 @@ export class ActivityService {
     })
   }
 
-  updateActivityTitle(title: string, id: number): Promise<Activity> {
+  deleteTodo(id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      this._http.patch<Activity>(`/activity-groups/${id}`, { title }, { responseType: 'json' })
+      this._http.delete<void>(`/todo-items/${id}`, { responseType: 'json' })
         .subscribe({
           next: (resp) => resolve(resp),
           error: (err) => reject(err),

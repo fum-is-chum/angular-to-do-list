@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { Activity } from '../../models/activity.model';
 import { ActivityService } from '../../services/activity.service';
-import { ActivityStateService } from '../../services/delete-state.service';
+import { ActivityStateService } from '../../services/activity-state.service';
 
 @Component({
   selector: 'activity-page',
@@ -32,7 +32,7 @@ export class ActivityPageComponent implements OnInit, OnDestroy {
     try {
       this.activityIsLoading = true;
       const newActivityList = await this._activityService.getActivities();
-      this.activitySubject.next(newActivityList.data ?? [])
+      this.activitySubject.next(newActivityList.data.reverse() ?? [])
     } catch (error) {
       console.error(error);
     } finally {

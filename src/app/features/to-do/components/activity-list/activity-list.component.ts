@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivityStateService } from '../../services/delete-state.service';
+import { ActivityStateService } from '../../services/activity-state.service';
 
 @Component({
   selector: 'activity-list',
@@ -19,6 +19,7 @@ export class ActivityListComponent implements OnInit {
   emitAddEvent(): void {
     this._activityStateService.emitAddEvent();
   }
+  
   ngOnInit(): void {
   }
 

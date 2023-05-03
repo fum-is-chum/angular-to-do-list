@@ -2,7 +2,9 @@
   <ng-container *ngIf="isFocused; else textDisplay">
     <!-- form -->
     <input
+      autoFocus
       (focusout)="triggerFocusOut()"
+      (keydown.enter)="triggerFocusOut()"
       [formControl]="formControl"
       autocomplete="off"
       autocapitalize="off"

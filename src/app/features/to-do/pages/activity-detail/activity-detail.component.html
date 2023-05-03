@@ -29,9 +29,21 @@
       ></primary-button>
     </div>
   </form>
-  <div>{{ form.value | json }}</div>
+
+  <ng-container *ngIf="todosIsLoading; else hasTodos">
+    <div class="todos-loading-indicator">
+      <div class="spinner-border spinner-border-md text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </ng-container>
+  <!-- <div>{{ form.value | json }}</div> -->
 </div>
 
 <ng-template #viewDisplayTemplate>
   <span data-cy="activity-title">{{ f['title'].value }}</span>
+</ng-template>
+
+<ng-template #hasTodos>
+  <todo-list></todo-list>
 </ng-template>
