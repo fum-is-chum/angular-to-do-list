@@ -8,7 +8,7 @@
   <div class="card-footer">
     <div class="d-flex justify-content-between">
       <div>{{ activity.created_at | date : 'd MMMM yyyy' }}</div>
-      <span (click)="deleteActivity(activity.id!)" class="cursor-pointer"><i class="bi bi-trash"></i></span>
+      <span (click)="confirmDeletetion(activity)" class="cursor-pointer"><i class="bi bi-trash"></i></span>
     </div>
   </div>
 </div>

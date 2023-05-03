@@ -8,6 +8,7 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, E
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PrimaryButtonComponent implements OnInit {
+  @Input() btnClass: string = '';
   @Input() label: string = 'Primary Button';
   @Input() icon: string = 'bi-plus-lg';
   @Input() showIcon: boolean = true;

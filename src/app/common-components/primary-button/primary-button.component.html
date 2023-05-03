@@ -1,7 +1,7 @@
-<button class="btn btn-primary" (click)="onClickButton($event)">
-  <i *ngIf="showIcon && !loading" class="bi {{icon}}"></i>
+<button class="btn {{ btnClass ? 'btn-' + btnClass : '' }}" (click)="onClickButton($event)">
+  <i *ngIf="showIcon && !loading" class="bi {{ icon }}"></i>
   <div class="spinner-border spinner-border-md text-light" role="status" *ngIf="loading">
     <span class="sr-only"></span>
   </div>
-  {{label}}
+  {{ label }}
 </button>

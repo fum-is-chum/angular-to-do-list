@@ -7,6 +7,8 @@ import { ActivityListComponent } from './components/activity-list/activity-list.
 import { ActivityService } from './services/activity.service';
 import { ActivityItemCardComponent } from './components/activity-item-card/activity-item-card.component';
 import { DeleteStateService } from './services/delete-state.service';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalModule } from 'src/app/common-components/confirm-modal/confirm-modal.module';
 
 const routes: Routes = [
   {
@@ -21,6 +23,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     PrimaryButtonModule,
+    NgbModalModule,
+    ConfirmModalModule
   ],
   providers: [
     ActivityService,

@@ -1,23 +1,29 @@
 .btn {
   display: flex;
   align-items: center;
+  padding: 13.5px 29px;
+  border-radius: 45px;
+  font-size: 18px;
+  font-weight: 700;
+
   &.btn-primary {
     background-color: #16abf8;
-    padding: 13.5px 29px;
-    border-radius: 45px;
-    font-size: 18px;
-    font-weight: 700;
-    i {
-      font-size: 24px;
-      margin-right: 11px;
+  }
 
-      &::before {
-        font-weight: 600 !important;
-      }
-    }
+  &.btn-secondary {
+    color: #4A4A4A;
+    background-color: #f4f4f4;
+  }
 
-    .spinner-border {
-      margin-right: 11px;
+  i {
+    font-size: 24px;
+    margin-right: 11px;
+
+    &::before {
+      font-weight: 600 !important;
     }
+  }
+  .spinner-border {
+    margin-right: 11px;
   }
 }

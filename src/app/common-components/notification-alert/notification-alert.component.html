@@ -1,0 +1,5 @@
+<div class="alert-container">
+  <p *ngFor="let alert of alerts$ | async; let idx = index">
+    <ngb-alert [type]="alert.type" (closed)="close(idx)">{{ alert.message }}</ngb-alert>
+  </p>
+</div>
