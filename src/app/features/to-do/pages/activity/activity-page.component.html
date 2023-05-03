@@ -1,4 +1,4 @@
-<div class="container-md activity-container">
+<div class="container activity-container">
   <div class="activity-header">
     <h1 data-cy="activity-title">Activity</h1>
     <primary-button
@@ -11,5 +11,14 @@
     ></primary-button>
   </div>
 
-  <activity-list [activities]="activityList$ | async"></activity-list>
+  <ng-container *ngIf="activityIsLoading; else hasActivity">
+    <div class="activities-loading-indicator">
+      <div class="spinner-border spinner-border-md text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #hasActivity>
+    <activity-list *ngIf="!activityIsLoading" [activities]="activityList$ | async"></activity-list>
+  </ng-template>
 </div>

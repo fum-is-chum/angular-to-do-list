@@ -8,9 +8,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppHeaderModule } from './common-components/app-header/app-header.module';
-import { HttpInterceptorService } from './utils/http-interceptor';
-import { NotificationAlertComponent } from './common-components/notification-alert/notification-alert.component';
 import { NotificationAlertModule } from './common-components/notification-alert/notification-alert.module';
+import { HttpInterceptorService } from './utils/http-interceptor';
+
 registerLocaleData(localeId, 'id');
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ registerLocaleData(localeId, 'id');
 
     // modules
     AppHeaderModule,
-    NotificationAlertModule
+    NotificationAlertModule,
   ],
   providers: [
     {
@@ -32,7 +32,7 @@ registerLocaleData(localeId, 'id');
       useClass: HttpInterceptorService,
       multi: true
     },
-    { provide: LOCALE_ID, useValue: "id-ID" }
+    { provide: LOCALE_ID, useValue: "id-ID" },
   ],
   bootstrap: [AppComponent]
 })

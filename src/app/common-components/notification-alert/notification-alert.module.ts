@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgModule } from '@angular/core';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationAlertComponent } from './notification-alert.component';
 import { NotificationAlertService } from './service/notification-alert.service';
 
@@ -8,7 +8,7 @@ import { NotificationAlertService } from './service/notification-alert.service';
   declarations: [NotificationAlertComponent],
   imports: [
     CommonModule,
-    NgbAlertModule
+    NgbToastModule
   ],
   exports: [
     NotificationAlertComponent

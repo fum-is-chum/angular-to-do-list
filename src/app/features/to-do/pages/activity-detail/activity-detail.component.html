@@ -1,0 +1,37 @@
+<div class="container activity-detail-container">
+  <form [formGroup]="form">
+    <div class="activity-detail-header">
+      <div class="d-flex align-items-center">
+        <span
+          class="todo-back-button-container cursor-pointer"
+          data-cy="todo-back-button"
+          (click)="back()"
+        >
+          <i class="bi bi-chevron-left"></i>
+        </span>
+        <inline-edit
+          [viewDisplay]="viewDisplayTemplate"
+          [value]="f['title'].value"
+          class="inline-edit"
+          id="activity"
+          (valueChange)="updateTitle($event)"
+        ></inline-edit>
+      </div>
+
+      <!-- <h1 data-cy="activity-detail-title"></h1> -->
+      <!--sort-->
+      <primary-button
+        data-cy="activity-add-button"
+        label="Tambah"
+        icon="bi-plus-lg"
+        btnClass="primary"
+        (onClick)="addTodo()"
+      ></primary-button>
+    </div>
+  </form>
+  <div>{{ form.value | json }}</div>
+</div>
+
+<ng-template #viewDisplayTemplate>
+  <span data-cy="activity-title">{{ f['title'].value }}</span>
+</ng-template>

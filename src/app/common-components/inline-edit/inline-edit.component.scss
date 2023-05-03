@@ -1,0 +1,31 @@
+.input-container,
+.view-display {
+  &::after {
+    position: relative;
+    bottom: 5px;
+    margin-left: 11px;
+    content: url('/assets/svgs/edit-icon.svg');
+  }
+}
+
+.view-display {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+input {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+
+  &:focus {
+    outline: none;
+  }
+}

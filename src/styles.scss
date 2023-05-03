@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 * {
   box-sizing: border-box;
-  font-family: "Poppins", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: 'Poppins', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: #E5E5E5;
+  background: #f4f4f4;
 }
 
 .cursor-pointer {
@@ -16,4 +16,26 @@ body {
 
 .modal-content {
   border-radius: 12px;
+}
+
+ngb-toast.toast {
+  border-radius: 12px;
+  margin-bottom: 8px;
+
+  .toast-body {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0em;
+
+    border-radius: 12px;
+    background-color: white;
+    font-size: 15px;
+
+    i::before{
+      font-size: 15px;
+      margin-right: 10px;
+      color: #16abf8;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DeleteStateService } from '../../services/delete-state.service';
+import { ActivityStateService } from '../../services/delete-state.service';
 
 @Component({
   selector: 'activity-list',
@@ -9,13 +9,16 @@ import { DeleteStateService } from '../../services/delete-state.service';
 export class ActivityListComponent implements OnInit {
   @Input() activities: any[] | null = [];
   constructor(
-    private _deleteStateService: DeleteStateService
+    private _activityStateService: ActivityStateService
   ) { }
 
   emitDeleteEvent(): void {
-    this._deleteStateService.emitDeleteEvent();
+    this._activityStateService.emitDeleteEvent();
   }
 
+  emitAddEvent(): void {
+    this._activityStateService.emitAddEvent();
+  }
   ngOnInit(): void {
   }
 

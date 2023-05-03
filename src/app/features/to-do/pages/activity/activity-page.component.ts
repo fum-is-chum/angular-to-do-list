@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { Activity } from '../../models/activity.model';
 import { ActivityService } from '../../services/activity.service';
-import { DeleteStateService } from '../../services/delete-state.service';
+import { ActivityStateService } from '../../services/delete-state.service';
 
 @Component({
   selector: 'activity-page',
@@ -16,7 +16,7 @@ export class ActivityPageComponent implements OnInit, OnDestroy {
   public isAddingActivity: boolean = false;
   constructor(
     private _activityService: ActivityService,
-    private _deleteStateService: DeleteStateService
+    private _activityStateService: ActivityStateService
   ) {
     this.activitySubject = new BehaviorSubject<Activity[]>([]);
     this._onDestroy = new Subject();
@@ -61,8 +61,11 @@ export class ActivityPageComponent implements OnInit, OnDestroy {
     this.getActivityList();
 
     // setiap ada event delete activity item, load ulang activity list
-    this._deleteStateService.deleteEvent$.pipe(takeUntil(this._onDestroy))
+    this._activityStateService.deleteEvent$.pipe(takeUntil(this._onDestroy))
       .subscribe((event) => this.getActivityList())
+
+    this._activityStateService.addEvent$.pipe(takeUntil(this._onDestroy))
+      .subscribe((event) => this.addActivity())
   }
 
   ngOnDestroy(): void {

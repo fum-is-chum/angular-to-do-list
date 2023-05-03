@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationAlertService } from './service/notification-alert.service';
-import { Alert } from './model/notification.model';
 import { Observable } from 'rxjs';
+import { ToastInfo } from './model/notification.model';
+import { NotificationAlertService } from './service/notification-alert.service';
 @Component({
   selector: 'notification-alert',
   templateUrl: './notification-alert.component.html',
@@ -13,7 +13,7 @@ export class NotificationAlertComponent implements OnInit {
     private _notificationAlertService: NotificationAlertService
   ) { }
 
-  get alerts$(): Observable<Alert[]> {
+  get alerts$(): Observable<ToastInfo[]> {
     return this._notificationAlertService.alertList$;
   }
 

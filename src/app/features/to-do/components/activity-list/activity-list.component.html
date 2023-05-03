@@ -1,9 +1,18 @@
 <div class="activity-list-container">
   <div class="row">
-    <ng-container *ngFor="let activity of activities">
-      <div class="col-lg-3 col-md-6 col-12">
-        <activity-item-card data-cy="activity-item" [activity]="activity" (onDelete)="emitDeleteEvent()"></activity-item-card>
+    <ng-container *ngIf="activities!.length > 0; else noActivity">
+      <ng-container *ngFor="let activity of activities">
+        <div class="col-lg-3 col-md-6 col-12">
+          <activity-item-card data-cy="activity-item" [activity]="activity" (onDelete)="emitDeleteEvent()"></activity-item-card>
+        </div>
+      </ng-container>
+    </ng-container> 
+    <ng-template #noActivity>
+      <div class="col-12">
+        <div class="image-container d-flex justify-content-center cursor-pointer" (click)="emitAddEvent()" >
+          <img src="assets/svgs/activity-empty-state.svg" />
+        </div>
       </div>
-    </ng-container>
+    </ng-template>
   </div>
 </div>

@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Alert } from '../model/notification.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ToastInfo } from '../model/notification.model';
 
 @Injectable()
 export class NotificationAlertService {
-  public alertListSubject: BehaviorSubject<Alert[]>;
+  public alertListSubject: BehaviorSubject<ToastInfo[]>;
   constructor() {
-    this.alertListSubject = new BehaviorSubject<Alert[]>([]);
+    this.alertListSubject = new BehaviorSubject<ToastInfo[]>([]);
   }
 
-
-  get alertList$(): Observable<Alert[]> {
+  get alertList$(): Observable<ToastInfo[]> {
     return this.alertListSubject.asObservable()
   }
 
-  alert(type: string, message: string) {
-    this.alertListSubject.next([...this.alertListSubject.value, { type, message }])
-    console.log(this.alertListSubject.value)
+  alert(body: string) {
+    if(this.alertListSubject.value.length > 3) {
+      this.alertListSubject.value.pop();
+    }
+    this.alertListSubject.next([...this.alertListSubject.value, { body, show: true }].reverse())
   }
 
   close(index: number) {
@@ -25,4 +26,12 @@ export class NotificationAlertService {
       this.alertListSubject.value
     )
   }
+
+  // show(header: string, body: string) {
+  //   this.toasts.push({ header, body })
+  // }
+
+  // remove(toast: ToastInfo) {
+  //   this.toasts = this.toasts.filter((t) => t != toast)
+  // }
 }

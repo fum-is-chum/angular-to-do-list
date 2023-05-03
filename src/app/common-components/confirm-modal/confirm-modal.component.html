@@ -10,10 +10,11 @@
       btnClass="secondary"
       label="Batal"
       [showIcon]="false"
-      (onClick)="close(false)"
+      (onClick)="dismiss()"
     ></primary-button>
     <primary-button
       btnClass="danger"
+      [loading]="isDeleting"
       label="Hapus"
       [showIcon]="false"
       (onClick)="close(true)"
