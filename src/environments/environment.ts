@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  email: 'alvinardiansyah2002@gmail.com',
+  apiUrl: 'https://todo.api.devcode.gethired.id'
 };
 
 /*

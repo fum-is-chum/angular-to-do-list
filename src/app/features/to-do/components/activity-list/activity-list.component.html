@@ -1,0 +1,9 @@
+<div class="activity-list-container">
+  <div class="row">
+    <ng-container *ngFor="let activity of activities">
+      <div class="col-lg-3 col-md-6 col-12">
+        <activity-item-card data-cy="activity-item" [activity]="activity" (onDelete)="emitDeleteEvent()"></activity-item-card>
+      </div>
+    </ng-container>
+  </div>
+</div>

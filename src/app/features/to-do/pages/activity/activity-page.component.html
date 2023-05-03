@@ -1,0 +1,14 @@
+<div class="container activity-container">
+  <div class="activity-header">
+    <h1 data-cy="activity-title">Activity</h1>
+    <primary-button
+      data-cy="activity-add-button"
+      label="Tambah"
+      icon="bi-plus-lg"
+      [loading]="isAddingActivity"
+      (onClick)="addActivity()"
+    ></primary-button>
+  </div>
+
+  <activity-list [activities]="activityList$ | async"></activity-list>
+</div>

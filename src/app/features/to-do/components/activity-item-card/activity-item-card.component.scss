@@ -1,0 +1,28 @@
+.card {
+  border-radius: 12px;
+  height: 234px;
+  width: 100%;
+  padding: 22px 26px;
+  margin-bottom: 26px;
+
+  .card-header {
+    padding: 0px;
+    background-color: white;
+    border-bottom: none;
+    border-radius: inherit;
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 27px;
+      letter-spacing: 0em;
+    }
+  }
+
+  .card-footer {
+    padding: 0px;
+    background-color: white;
+    border-top: none;
+    color: #888;
+  }
+}
