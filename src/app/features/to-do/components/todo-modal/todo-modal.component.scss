@@ -1,0 +1,32 @@
+.modal-container {
+  .modal-header {
+    .modal-add-title {
+      font-size: 18px;
+    }
+    .modal-add-close-button {
+      &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+
+  .modal-body {
+    .form-group {
+      margin-bottom: 26px;
+      label {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0em;
+        margin-bottom: 9px;
+      }
+
+      select.priority-select {
+        option {
+        }
+      }
+    }
+  }
+}

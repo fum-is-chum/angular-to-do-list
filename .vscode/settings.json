@@ -4,7 +4,7 @@
   "editor.insertSpaces": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.printWidth": 100,
-  "prettier.singleQuote": true,
+  // "prettier.singleQuote": false,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }

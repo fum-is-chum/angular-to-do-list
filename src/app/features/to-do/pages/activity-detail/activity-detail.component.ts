@@ -7,6 +7,7 @@ import { NotificationAlertService } from 'src/app/common-components/notification
 import { TodoStateService } from '../../services/todo-state.service';
 import { Subject, takeUntil } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TodoModalComponent } from '../../components/todo-modal/todo-modal.component';
 
 @Component({
   selector: 'app-activity-detail',
@@ -46,9 +47,20 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
   }
 
   addTodo(): void {
-    // const modalRef = this._modalService.open( , {
-    //   centerd
-    // })
+    if (!this.f['id'].value) {
+      this._notificationService.errorAlert('Terjadi kesalahan: activity_id tidak valid, silahkan kembali ke halaman sebelumnya');
+      return;
+    }
+    const modalRef = this._modalService.open(TodoModalComponent, {
+      centered: true,
+      size: 'lg'
+    })
+
+    modalRef.componentInstance.activity_group_id = this.f['id'].value;
+
+    modalRef.result
+      .then(() => { })
+      .catch(() => { })
   }
 
   async updateTitle(newTitle: string): Promise<void> {

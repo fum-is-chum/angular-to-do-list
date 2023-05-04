@@ -1,1 +1,64 @@
-<div data-cy="todo-modal-delete" class="modal-container"></div>
+<div data-cy="todo-modal-delete" class="modal-container">
+  <div class="modal-header">
+    <h4 data-cy="modal-add-title" class="modal-title modal-add-title" id="modal-basic-title">
+      {{ action === "Tambah" ? action + " List Item" : "" }}
+    </h4>
+    <button
+      data-cy="modal-add-close-button"
+      type="button"
+      class="btn-close modal-add-close-button"
+      aria-label="Close"
+      (click)="dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body" ngbAutoFocus>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label data-cy="modal-add-name-title" for="title">Nama list item</label>
+            <input
+              id="title"
+              name="title"
+              data-cy="modal-add-name-input"
+              formControlName="title"
+              class="form-control"
+              placeholder="Tambahkan nama list item"
+              [ngClass]="{ 'is-invalid': submitted && this.f['title'].errors }"
+            />
+
+            <div class="invalid-feedback" *ngIf="submitted && this.f['title'].errors">
+              <div *ngIf="this.f['title'].errors['required']">
+                Nama list item tidak boleh kosong
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label data-cy="modal-add-priority-title" for="priority">Priority</label>
+            <select
+              data-cy="modal-add-priority-dropdown"
+              data-content="\uF309"
+              class="form-select priority-select"
+              formControlName="priority"
+              aria-label="Priority"
+            >
+              <ng-container *ngFor="let priority of priorityList">
+                <option
+                  [class]="priority"
+                  class="bi"
+                  [attr.data-cy]="'modal-add-priority-' + priority"
+                  [value]="priority"
+                >
+                  {{ priorityMap[priority] }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer"></div>
+</div>
