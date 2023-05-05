@@ -1,5 +1,7 @@
 .modal-container {
   .modal-header {
+    padding-left: 30px;
+    padding-right: 30px;
     .modal-add-title {
       font-size: 18px;
     }
@@ -12,6 +14,8 @@
   }
 
   .modal-body {
+    padding-left: 30px;
+    padding-right: 30px;
     .form-group {
       margin-bottom: 26px;
       label {
@@ -23,10 +27,40 @@
         margin-bottom: 9px;
       }
 
-      select.priority-select {
-        option {
+      ng-select.priority-select {
+        max-width: 200px;
+        div.priority-item {
+          display: flex;
+          align-items: center;
+          &::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 20px;
+          }
+          &.very-high::before {
+            background: #ed4c5c;
+          }
+          &.high::before {
+            background: #f8a541;
+          }
+          &.normal::before {
+            background: #00a790;
+          }
+          &.low::before {
+            background: #428bc1;
+          }
+          &.very-low::before {
+            background: #8942c1;
+          }
         }
       }
     }
+  }
+
+  .modal-footer {
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }

@@ -17,6 +17,8 @@ import { ActivityStateService } from './services/activity-state.service';
 import { ActivityService } from './services/activity.service';
 import { TodoService } from './services/to-do.service';
 import { TodoStateService } from './services/todo-state.service';
+import { NgSelectModule } from "@ng-select/ng-select";
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 const routes: Routes = [
   {
@@ -37,7 +39,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ActivityPageComponent, ActivityListComponent, ActivityItemCardComponent, ActivityDetailComponent, TodoListComponent, TodoModalComponent,],
+  declarations: [ActivityPageComponent, ActivityListComponent, ActivityItemCardComponent, ActivityDetailComponent, TodoListComponent, TodoModalComponent, TodoItemComponent,],
   imports: [
     CommonModule,
     FormsModule,
@@ -46,7 +48,8 @@ const routes: Routes = [
     PrimaryButtonModule,
     NgbModalModule,
     ConfirmModalModule,
-    InlineEditModule
+    InlineEditModule,
+    NgSelectModule
   ],
   providers: [
     ActivityService,

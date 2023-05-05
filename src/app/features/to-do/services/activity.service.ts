@@ -18,8 +18,8 @@ export class ActivityService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 
   getActivity(id: number): Promise<Activity> {
@@ -29,8 +29,8 @@ export class ActivityService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 
   addActivity(data: Activity): Promise<Activity> {
@@ -40,8 +40,8 @@ export class ActivityService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 
   removeActivity(id: number): Promise<void> {
@@ -51,8 +51,8 @@ export class ActivityService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 
   updateActivityTitle(title: string, id: number): Promise<Activity> {
@@ -62,7 +62,11 @@ export class ActivityService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
+  }
+
+  test() {
+    alert("TEST");
   }
 }

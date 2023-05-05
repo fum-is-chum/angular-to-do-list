@@ -1,6 +1,6 @@
 <div data-cy="activity-modal-delete" class="modal-container">
   <div class="modal-header justify-content-center align-items-center">
-    <img src = "assets/svgs/modal-delete-icon.svg" alt="Delete Icon"/>
+    <img src="assets/svgs/modal-delete-icon.svg" alt="Delete Icon" />
   </div>
   <div class="modal-body" ngbAutoFocus>
     <p class="dialog-text" [innerHTML]="dialog"></p>
@@ -14,7 +14,7 @@
     ></primary-button>
     <primary-button
       btnClass="danger"
-      [loading]="isDeleting"
+      [loading]="isLoading"
       label="Hapus"
       [showIcon]="false"
       (onClick)="close(true)"

@@ -5,9 +5,11 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/f
 import { ActivityService } from '../../services/activity.service';
 import { NotificationAlertService } from 'src/app/common-components/notification-alert/service/notification-alert.service';
 import { TodoStateService } from '../../services/todo-state.service';
-import { Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TodoModalComponent } from '../../components/todo-modal/todo-modal.component';
+import { Todo } from "../../models/to-do.model";
+import { TodoService } from "../../services/to-do.service";
 
 @Component({
   selector: 'app-activity-detail',
@@ -19,7 +21,7 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
   private _onDestroy: Subject<void> = new Subject();
   public form: FormGroup;
   public todosIsLoading: boolean = false;
-
+  private todoListSubject: BehaviorSubject<Todo[]>;
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -27,15 +29,21 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
     private _activityService: ActivityService,
     private _notificationService: NotificationAlertService,
     private _todoStateService: TodoStateService,
+    private _todoService: TodoService,
     private _modalService: NgbModal
   ) {
     this.activity = this._route.snapshot.data['activity'];
     this.form = this._fb.group(this.activity);
+    this.todoListSubject = new BehaviorSubject<Todo[]>([]);
     this.initTodoList();
   }
 
   get f(): { [key: string]: AbstractControl; } {
     return this.form.controls;
+  }
+
+  get todoList$(): Observable<Todo[]> {
+    return this.todoListSubject.asObservable();
   }
 
   control(formName: string) {
@@ -54,17 +62,18 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
     const modalRef = this._modalService.open(TodoModalComponent, {
       centered: true,
       size: 'lg'
-    })
+    });
 
     modalRef.componentInstance.activity_group_id = this.f['id'].value;
 
     modalRef.result
-      .then(() => { })
-      .catch(() => { })
+      .finally(() => {
+        this.loadTodoList();
+      });
   }
 
   async updateTitle(newTitle: string): Promise<void> {
-    const { title, id } = this.form.getRawValue()
+    const { title, id } = this.form.getRawValue();
     if (title !== newTitle) {
       try {
         // // Panggil API update jika ada perubahan judul
@@ -73,21 +82,34 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
         await this._activityService.updateActivityTitle(newTitle, id);
         this.activity.title = newTitle;
       } catch (error) {
-        this._notificationService.errorAlert(`Terjadi kesalahan: Gagal mengupdate judul`)
+        this._notificationService.errorAlert(`Terjadi kesalahan: Gagal mengupdate judul`);
         console.error(error);
         this.f['title'].patchValue(title);
       }
     }
   }
 
+  async loadTodoList(): Promise<void> {
+    if (this.todosIsLoading) return;
+    try {
+      this.todosIsLoading = true;
+      this.todoListSubject.next(await this._todoService.getTodos(this.activity.id!) ?? []);
+    } catch (e) {
+      this._notificationService.errorAlert('Terjadi kesalahan: Gagal memuat Todo list');
+      console.error(e);
+    } finally {
+      this.todosIsLoading = false;
+    }
+  }
+
   back(): void {
-    this._router.navigate(['../../'], { relativeTo: this._route })
+    this._router.navigate(['../../'], { relativeTo: this._route });
   }
 
   ngOnInit(): void {
-
+    this.todoListSubject.next(this.activity.todo_items ?? []);
     this._todoStateService.addEvent$.pipe(takeUntil(this._onDestroy))
-      .subscribe(() => this.addTodo())
+      .subscribe(() => this.addTodo());
   }
 
   ngOnDestroy(): void {

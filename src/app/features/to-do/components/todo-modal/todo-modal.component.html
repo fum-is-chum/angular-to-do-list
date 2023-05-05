@@ -1,7 +1,7 @@
-<div data-cy="todo-modal-delete" class="modal-container">
+<div data-cy="modal-add" class="modal-container">
   <div class="modal-header">
     <h4 data-cy="modal-add-title" class="modal-title modal-add-title" id="modal-basic-title">
-      {{ action === "Tambah" ? action + " List Item" : "" }}
+      {{ action }} List Item
     </h4>
     <button
       data-cy="modal-add-close-button"
@@ -37,28 +37,39 @@
         <div class="col-12">
           <div class="form-group">
             <label data-cy="modal-add-priority-title" for="priority">Priority</label>
-            <select
+            <ng-select
               data-cy="modal-add-priority-dropdown"
-              data-content="\uF309"
-              class="form-select priority-select"
               formControlName="priority"
-              aria-label="Priority"
+              [items]="priorityList"
+              class="priority-select"
+              [clearable]="false"
             >
-              <ng-container *ngFor="let priority of priorityList">
-                <option
-                  [class]="priority"
-                  class="bi"
-                  [attr.data-cy]="'modal-add-priority-' + priority"
-                  [value]="priority"
-                >
-                  {{ priorityMap[priority] }}
-                </option>
-              </ng-container>
-            </select>
+              <ng-template ng-option-tmp let-item="item">
+                <div class="priority-item {{ item }}" [attr.data-cy]="'modal-add-priority-' + item">
+                  {{ priorityMap[item] }}
+                </div>
+              </ng-template>
+              <ng-template ng-label-tmp let-item="item">
+                <div class="priority-item {{ item }}">
+                  {{ priorityMap[item] }}
+                </div>
+              </ng-template>
+            </ng-select>
           </div>
         </div>
       </div>
     </form>
+    <!-- <div>{{ form.value | json }}</div> -->
   </div>
-  <div class="modal-footer"></div>
+  <div class="modal-footer">
+    <primary-button
+      data-cy="modal-add-save-button"
+      btnClass="primary"
+      [loading]="isLoading"
+      [showIcon]="false"
+      [disabled]="form.invalid"
+      label="Simpan"
+      (onClick)="save()"
+    ></primary-button>
+  </div>
 </div>

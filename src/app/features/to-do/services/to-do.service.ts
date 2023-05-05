@@ -17,19 +17,19 @@ export class TodoService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 
   getTodos(activity_group_id: number): Promise<Todo[]> {
     return new Promise((resolve, reject) => {
-      this._http.get<Todo[]>(`/todo-items?activity_group_id=${encodeURI(activity_group_id.toString())}`)
+      this._http.get<any>(`/todo-items?activity_group_id=${encodeURI(activity_group_id.toString())}`)
         .subscribe({
-          next: (resp) => resolve(resp),
+          next: (resp) => resolve(resp.data),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 
   getTodo(id: number): Promise<Todo> {
@@ -39,8 +39,8 @@ export class TodoService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 
   updateTodo(data: Todo): Promise<Todo> {
@@ -50,8 +50,8 @@ export class TodoService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 
   deleteTodo(id: number): Promise<void> {
@@ -61,7 +61,7 @@ export class TodoService {
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
           complete: () => { }
-        })
-    })
+        });
+    });
   }
 }

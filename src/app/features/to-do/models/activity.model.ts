@@ -7,10 +7,10 @@ export class Activity {
   email: string | null;
   created_at?: string;
   modified_at?: string;
-  todo_items?: Todo[]
+  todo_items?: Todo[];
 
   constructor(data: any = {}) {
-    if (data) {
+    if (data.id) {
       this.id = data.id;
       this.created_at = data.created_at;
       this.modified_at = data.modified_at;
@@ -25,6 +25,6 @@ export interface ActivityList {
   total: number;
   limit: number;
   skip: number;
-  data: Activity[]
+  data: Activity[];
 }
 

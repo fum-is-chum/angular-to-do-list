@@ -19,6 +19,7 @@ export enum TODO_ACTION {
 export class TodoModalComponent implements OnInit {
   public action = TODO_ACTION.ADD;
   public activity_group_id!: number;
+  public todo?: Todo;
   public form: FormGroup;
   public isLoading: boolean = false;
   public submitted: boolean = false;
@@ -58,9 +59,14 @@ export class TodoModalComponent implements OnInit {
     try {
       this.isLoading = true;
       const todo = this.form.getRawValue();
-      const response = await this._todoService.addTodo(todo);
+      if (this.action === TODO_ACTION.ADD) {
+        const response = await this._todoService.addTodo(todo);
+      } else {
+        const response = await this._todoService.updateTodo(todo);
+      }
+      this.close();
     } catch (error) {
-      this._notificationService.errorAlert(`Terjadi kesalahan: Gagal menambahkan Todo`);
+      this._notificationService.errorAlert(`Terjadi kesalahan: Gagal ${this.action === TODO_ACTION.ADD ? 'menambahkan' : 'mengeditf'} Todo`);
       console.error(error);
     } finally {
       this.isLoading = false;
@@ -78,6 +84,11 @@ export class TodoModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.activity_group_id) {
       this.f['activity_group_id'].patchValue(this.activity_group_id);
+    }
+
+    if (this.todo) {
+      this.form = this._fb.group(this.todo);
+      this.addValidators();
     }
   }
 

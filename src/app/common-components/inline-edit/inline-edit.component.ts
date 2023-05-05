@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -15,7 +15,9 @@ export class InlineEditComponent implements OnInit {
   @Input() id: number | string = +new Date();
   @Output() valueChange = new EventEmitter<string>();
   public isFocused: boolean = false;
-  constructor() {
+  constructor(
+    private _cd: ChangeDetectorRef
+  ) {
   }
 
   triggerFocusOut(): void {
@@ -26,6 +28,7 @@ export class InlineEditComponent implements OnInit {
   setFocus(): void {
     this.isFocused = true;
     this.formControl.patchValue(this.value);
+    this._cd.markForCheck();
   }
 
   ngOnInit(): void {

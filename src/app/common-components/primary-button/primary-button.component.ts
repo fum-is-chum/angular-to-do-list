@@ -13,6 +13,7 @@ export class PrimaryButtonComponent implements OnInit {
   @Input() icon: string = 'bi-plus-lg';
   @Input() showIcon: boolean = true;
   @Input() loading: boolean = false;
+  @Input() disabled: boolean = false;
   @Output() onClick = new EventEmitter<MouseEvent>();
   constructor(
   ) {

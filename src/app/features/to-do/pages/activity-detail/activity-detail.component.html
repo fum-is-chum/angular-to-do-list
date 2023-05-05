@@ -10,18 +10,24 @@
           <i class="bi bi-chevron-left"></i>
         </span>
         <inline-edit
+          #inlineEdit
           [viewDisplay]="viewDisplayTemplate"
           [value]="f['title'].value"
           class="inline-edit"
           id="activity"
           (valueChange)="updateTitle($event)"
         ></inline-edit>
+        <span
+          (click)="inlineEdit.setFocus()"
+          class="todo-title-edit-button cursor-pointer"
+          data-cy="todo-title-edit-button"
+        ></span>
       </div>
 
       <!-- <h1 data-cy="activity-detail-title"></h1> -->
       <!--sort-->
       <primary-button
-        data-cy="activity-add-button"
+        data-cy="todo-add-button"
         label="Tambah"
         icon="bi-plus-lg"
         btnClass="primary"
@@ -41,9 +47,13 @@
 </div>
 
 <ng-template #viewDisplayTemplate>
-  <span data-cy="activity-title">{{ f['title'].value }}</span>
+  <span data-cy="activity-title">{{ f["title"].value }}</span>
 </ng-template>
 
 <ng-template #hasTodos>
-  <todo-list></todo-list>
+  <todo-list
+    [todos]="todoList$ | async"
+    (itemDeleted)="loadTodoList()"
+    (itemUpdated)="loadTodoList()"
+  ></todo-list>
 </ng-template>
