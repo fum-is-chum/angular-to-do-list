@@ -29,6 +29,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/rfs/scss.scss",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "src/styles.scss"

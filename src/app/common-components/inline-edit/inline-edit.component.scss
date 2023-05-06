@@ -2,14 +2,14 @@
 .view-display {
   @include font-size(inherit);
   font-weight: inherit;
-  line-height: inherit;
   letter-spacing: inherit;
 }
 
 input {
   @include font-size(inherit);
+  @include margin-bottom(10px);
+  width: 100%;
   font-weight: inherit;
-  line-height: inherit;
   letter-spacing: inherit;
 
   background: transparent;
