@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~rfs/scss";
 * {
   box-sizing: border-box;
   font-family: "Poppins", Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -23,16 +24,16 @@ ngb-toast.toast {
   margin-bottom: 8px;
 
   .toast-body {
-    font-size: 14px;
+    @include font-size(14px);
     font-weight: 500;
     line-height: 21px;
     letter-spacing: 0em;
 
     border-radius: 12px;
-    font-size: 15px;
+    @include font-size(15px);
 
     i {
-      font-size: 15px;
+      @include font-size(15px);
       margin-right: 10px;
       &.bi-exclamation-circle::before {
         color: #16abf8;

@@ -1,9 +1,10 @@
+@import '~rfs/scss';
 .header {
   background-color: #16abf8;
   width: 100%;
   .header-container {
     .header-title {
-      font-size: 24px;
+      @include font-size(24px);
       font-weight: 800;
       color: white;
     }

@@ -1,3 +1,4 @@
+@import '~rfs/scss';
 .modal-container {
   .modal-header {
     border: none;
@@ -6,7 +7,7 @@
   }
   .modal-body {
     .dialog-text {
-      font-size: 18px;
+      @include font-size(18px);
       font-weight: 500;
       line-height: 27px;
       letter-spacing: 0em;

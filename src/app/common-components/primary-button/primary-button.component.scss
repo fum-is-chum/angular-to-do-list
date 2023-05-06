@@ -1,9 +1,13 @@
+@import "~rfs/scss";
 .btn {
   display: flex;
   align-items: center;
-  padding: 13.5px 29px;
-  border-radius: 45px;
-  font-size: 18px;
+  @include padding-left(29px);
+  @include padding-right(29px);
+  @include padding-top(13.5px);
+  @include padding-bottom(13.5px);
+  @include rfs(45px, border-radius);
+  @include font-size(18px);
   font-weight: 700;
 
   &.btn-primary {
@@ -16,14 +20,14 @@
   }
 
   i {
-    font-size: 24px;
-    margin-right: 11px;
+    @include font-size(24px);
+    @include margin-right(11px);
 
     &::before {
       font-weight: 600 !important;
     }
   }
   .spinner-border {
-    margin-right: 11px;
+    @include margin-right(11px);
   }
 }

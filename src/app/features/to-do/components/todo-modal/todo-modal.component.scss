@@ -1,9 +1,10 @@
+@import '~rfs/scss';
 .modal-container {
   .modal-header {
     padding-left: 30px;
     padding-right: 30px;
     .modal-add-title {
-      font-size: 18px;
+      @include font-size(18px);
     }
     .modal-add-close-button {
       &:focus {
@@ -20,7 +21,7 @@
       margin-bottom: 26px;
       label {
         text-transform: uppercase;
-        font-size: 12px;
+        @include font-size(12px);
         font-weight: 600;
         line-height: 18px;
         letter-spacing: 0em;

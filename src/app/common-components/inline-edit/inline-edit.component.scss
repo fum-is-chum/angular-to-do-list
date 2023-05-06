@@ -1,12 +1,13 @@
+@import '~rfs/scss';
 .view-display {
-  font-size: inherit;
+  @include font-size(inherit);
   font-weight: inherit;
   line-height: inherit;
   letter-spacing: inherit;
 }
 
 input {
-  font-size: inherit;
+  @include font-size(inherit);
   font-weight: inherit;
   line-height: inherit;
   letter-spacing: inherit;
