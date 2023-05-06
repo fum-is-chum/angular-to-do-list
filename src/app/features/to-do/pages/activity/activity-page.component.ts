@@ -32,7 +32,7 @@ export class ActivityPageComponent implements OnInit, OnDestroy {
     try {
       this.activityIsLoading = true;
       const newActivityList = await this._activityService.getActivities();
-      this.activitySubject.next(newActivityList.data.reverse() ?? [])
+      this.activitySubject.next(newActivityList.data.reverse() ?? []);
     } catch (error) {
       console.error(error);
     } finally {
@@ -62,10 +62,10 @@ export class ActivityPageComponent implements OnInit, OnDestroy {
 
     // setiap ada event delete activity item, load ulang activity list
     this._activityStateService.deleteEvent$.pipe(takeUntil(this._onDestroy))
-      .subscribe((event) => this.getActivityList())
+      .subscribe((event) => this.getActivityList());
 
     this._activityStateService.addEvent$.pipe(takeUntil(this._onDestroy))
-      .subscribe((event) => this.addActivity())
+      .subscribe((event) => this.addActivity());
   }
 
   ngOnDestroy(): void {

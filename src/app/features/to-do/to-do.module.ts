@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalModule } from 'src/app/common-components/confirm-modal/confirm-modal.module';
 import { InlineEditModule } from 'src/app/common-components/inline-edit/inline-edit.module';
 import { PrimaryButtonModule } from 'src/app/common-components/primary-button/primary-button.module';
@@ -49,7 +49,8 @@ const routes: Routes = [
     NgbModalModule,
     ConfirmModalModule,
     InlineEditModule,
-    NgSelectModule
+    NgSelectModule,
+    NgbDropdownModule
   ],
   providers: [
     ActivityService,

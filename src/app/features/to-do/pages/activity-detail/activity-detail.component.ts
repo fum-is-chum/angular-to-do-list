@@ -22,6 +22,29 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public todosIsLoading: boolean = false;
   private todoListSubject: BehaviorSubject<Todo[]>;
+  public activeSort: string ='sort-latest';
+  public sortOptions = [
+    {
+      label: 'Terbaru',
+      value: 'sort-latest'
+    },
+    {
+      label: 'Terlama',
+      value: 'sort-oldest'
+    },
+    {
+      label: 'A-Z',
+      value: 'sort-az'
+    },
+    {
+      label: 'Z-A',
+      value: 'sort-za'
+    },
+    {
+      label: 'Belum Selesai',
+      value: 'sort-unfinished'
+    },
+  ];
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -102,11 +125,42 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+  setSort(sortType: string) {
+    switch (sortType) {
+      case 'sort-latest':
+        this.todoListSubject.value.sort((a, b) => b.id! - a.id!);
+        break;
+      case 'sort-oldest':
+        this.todoListSubject.value.sort((a, b) => a.id! - b.id!);
+        break;
+      case 'sort-az':
+        this.todoListSubject.value.sort((a, b) => {
+          if (a.title < b.title) { return -1; }
+          if (a.title > b.title) { return 1; }
+          return 0;
+        });
+        break;
+      case 'sort-za':
+        this.todoListSubject.value.sort((a, b) => {
+          if (a.title < b.title) { return 1; }
+          if (a.title > b.title) { return -1; }
+          return 0;
+        });
+        break;
+      case 'sort-unfinished':
+        this.todoListSubject.value.sort((a, b) => b.is_active! - a.is_active!);
+        break;
+    }
+
+    this.activeSort = sortType
+  }
+
   back(): void {
     this._router.navigate(['../../'], { relativeTo: this._route });
   }
 
   ngOnInit(): void {
+    this.loadTodoList();
     this.todoListSubject.next(this.activity.todo_items ?? []);
     this._todoStateService.addEvent$.pipe(takeUntil(this._onDestroy))
       .subscribe(() => this.addTodo());

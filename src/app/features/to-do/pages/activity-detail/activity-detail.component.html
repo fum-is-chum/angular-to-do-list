@@ -24,15 +24,47 @@
         ></span>
       </div>
 
-      <!-- <h1 data-cy="activity-detail-title"></h1> -->
       <!--sort-->
-      <primary-button
-        data-cy="todo-add-button"
-        label="Tambah"
-        icon="bi-plus-lg"
-        btnClass="primary"
-        (onClick)="addTodo()"
-      ></primary-button>
+      <div class="d-flex align-items-center">
+        <div ngbDropdown class="d-inline-block me-4">
+          <button
+            data-cy="todo-sort-button"
+            type="button"
+            class="todo-sort-button"
+            id="dropdownBasic1"
+            ngbDropdownToggle
+          >
+            <div class="sort-icon"></div>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" data-cy="sort-parent">
+            <ng-container *ngFor="let sort of sortOptions">
+              <button ngbDropdownItem (click)="setSort(sort.value)" [attr.data-cy]="sort.value">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <img
+                      [src]="'assets/svgs/' + sort.value + '.svg'"
+                      class="me-2 img-fluid"
+                      [width]="20"
+                    />
+                    <span>{{ sort.label }}</span>
+                  </div>
+                  <ng-container *ngIf="sort.value === activeSort">
+                    <img src="assets/svgs/check.svg" />
+                  </ng-container>
+                </div>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+
+        <primary-button
+          data-cy="todo-add-button"
+          label="Tambah"
+          icon="bi-plus-lg"
+          btnClass="primary"
+          (onClick)="addTodo()"
+        ></primary-button>
+      </div>
     </div>
   </form>
 
@@ -47,7 +79,7 @@
 </div>
 
 <ng-template #viewDisplayTemplate>
-  <span data-cy="activity-title">{{ f["title"].value }}</span>
+  <span data-cy="todo-title">{{ f["title"].value }}</span>
 </ng-template>
 
 <ng-template #hasTodos>
