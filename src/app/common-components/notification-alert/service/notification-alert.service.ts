@@ -14,7 +14,7 @@ export class NotificationAlertService {
   }
 
   alert(body: string) {
-    console.log(this.alertListSubject.value)
+    // console.log(this.alertListSubject.value)
     if (this.alertListSubject.value.length > 3) {
       this.alertListSubject.value.pop();
     }

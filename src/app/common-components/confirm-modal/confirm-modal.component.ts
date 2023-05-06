@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,7 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './confirm-modal.component.html',
   styleUrls: ['./confirm-modal.component.scss']
 })
-export class ConfirmModalComponent implements OnInit {
+export class ConfirmModalComponent implements OnInit, AfterViewInit {
   public dialog: string = '';
   public isLoading: boolean = false;
   public callback?: Function;
@@ -38,7 +38,12 @@ export class ConfirmModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.callback);
+    // console.log(this.callback);
   }
 
+  ngAfterViewInit(): void {
+    // setTimeout(() => {
+    //   this.activeModal.close();
+    // }, 1000);
+  }
 }

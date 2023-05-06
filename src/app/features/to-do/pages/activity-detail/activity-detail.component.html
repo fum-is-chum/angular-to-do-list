@@ -37,7 +37,7 @@
           >
             <div class="sort-icon"></div>
           </button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" data-cy="sort-parent">
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" data-cy="sort-selection">
             <ng-container *ngFor="let sort of sortOptions">
               <button ngbDropdownItem (click)="setSort(sort.value)" [attr.data-cy]="sort.value">
                 <div class="d-flex justify-content-between">
@@ -59,7 +59,7 @@
         </div>
 
         <primary-button
-          data-cy="todo-add-button"
+          dataCy="todo-add-button"
           label="Tambah"
           icon="bi-plus-lg"
           btnClass="primary"

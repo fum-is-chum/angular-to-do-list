@@ -37,10 +37,18 @@
         <div class="col-12">
           <div class="form-group">
             <label data-cy="modal-add-priority-title" for="priority">Priority</label>
+            <!-- <select class="form-select priority-select" formControlName="priority" data-cy="modal-add-priority-dropdown">
+              <ng-container *ngFor="let priority of priorityList">
+                <option class="priority-item" [value]="" [attr.data-cy]="'modal-add-priority-' + priority">
+                  <div class="priority-item">{{ priorityMap[priority] }}</div>
+                </option>
+              </ng-container>
+            </select> -->
             <ng-select
               data-cy="modal-add-priority-dropdown"
               formControlName="priority"
               [items]="priorityList"
+              [searchable]="false"
               class="priority-select"
               [clearable]="false"
             >
@@ -50,11 +58,11 @@
                 </div>
               </ng-template>
               <ng-template ng-label-tmp let-item="item">
-                <div class="priority-item {{ item }}">
+                <div class="priority-item {{ item }}" data-cy="modal-add-priority-item">
                   {{ priorityMap[item] }}
                 </div>
-              </ng-template>
-            </ng-select>
+              </ng-template> 
+            </ng-select>  
           </div>
         </div>
       </div>
@@ -63,7 +71,7 @@
   </div>
   <div class="modal-footer">
     <primary-button
-      data-cy="modal-add-save-button"
+      dataCy="modal-add-save-button"
       btnClass="primary"
       [loading]="isLoading"
       [showIcon]="false"

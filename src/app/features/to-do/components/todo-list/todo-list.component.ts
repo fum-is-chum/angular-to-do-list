@@ -30,7 +30,8 @@ export class TodoListComponent implements OnInit {
   confirmDeletion(idx: number): void {
     const todo = this.todos![idx];
     const modalRef = this._modalService.open(ConfirmModalComponent, {
-      centered: true
+      centered: true,
+
     });
 
     modalRef.componentInstance.dialog = `Apakah anda yakin menghapus List Item<br/><b>"${todo.title}"?</b>`;

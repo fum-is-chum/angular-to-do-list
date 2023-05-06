@@ -90,6 +90,10 @@ export class TodoModalComponent implements OnInit {
       this.form = this._fb.group(this.todo);
       this.addValidators();
     }
+
+    // setTimeout(() => {
+    //   this.close()
+    // }, 1000)
   }
 
 }

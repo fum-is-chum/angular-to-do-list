@@ -22,7 +22,8 @@ export class ActivityListComponent implements OnInit {
 
   confirmDeletetion(activity: Activity) {
     const modalRef = this._modalService.open(ConfirmModalComponent, {
-      centered: true
+      centered: true,
+
     });
 
     modalRef.componentInstance.dialog = `Apakah anda yakin menghapus activity<br/><b>"${activity.title}"?</b>`;

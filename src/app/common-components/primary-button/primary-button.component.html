@@ -1,4 +1,5 @@
 <button
+  [attr.data-cy]="dataCy"
   class="btn {{ btnClass ? 'btn-' + btnClass : '' }}"
   (click)="onClickButton($event)"
   [disabled]="disabled"

@@ -22,7 +22,7 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public todosIsLoading: boolean = false;
   private todoListSubject: BehaviorSubject<Todo[]>;
-  public activeSort: string ='sort-latest';
+  public activeSort: string = 'sort-latest';
   public sortOptions = [
     {
       label: 'Terbaru',
@@ -45,6 +45,7 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
       value: 'sort-unfinished'
     },
   ];
+
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -116,7 +117,34 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
     if (this.todosIsLoading) return;
     try {
       this.todosIsLoading = true;
-      this.todoListSubject.next(await this._todoService.getTodos(this.activity.id!) ?? []);
+      const todos = await this._todoService.getTodos(this.activity.id!) ?? [];
+      switch (this.activeSort) {
+        case 'sort-latest':
+          todos.sort((a, b) => b.id! - a.id!);
+          break;
+        case 'sort-oldest':
+          todos.sort((a, b) => a.id! - b.id!);
+          break;
+        case 'sort-az':
+          todos.sort((a, b) => {
+            if (a.title < b.title) { return -1; }
+            if (a.title > b.title) { return 1; }
+            return 0;
+          });
+          break;
+        case 'sort-za':
+          todos.sort((a, b) => {
+            if (a.title < b.title) { return 1; }
+            if (a.title > b.title) { return -1; }
+            return 0;
+          });
+          break;
+        case 'sort-unfinished':
+          todos.sort((a, b) => b.is_active! - a.is_active!);
+          break;
+      }
+      this.todoListSubject.next(todos);
+
     } catch (e) {
       this._notificationService.errorAlert('Terjadi kesalahan: Gagal memuat Todo list');
       console.error(e);
@@ -152,7 +180,7 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
         break;
     }
 
-    this.activeSort = sortType
+    this.activeSort = sortType;
   }
 
   back(): void {
