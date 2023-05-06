@@ -9,7 +9,7 @@
             data-cy="todo-item-checkbox"
             (change)="updateIsActive()"
           />
-          <span class="checkmark" data-cy="todo-item-checkbox"></span>
+          <span class="checkmark"></span>
         </label>
         <span
           class="todo-item-priority-indicator {{ todo.priority }} me-3"
@@ -28,7 +28,7 @@
         ></span>
       </div>
       <span
-        data-cy="todo-item-checkbox"
+        data-cy="todo-item-delete-button"
         class="todo-item-checkbox cursor-pointer"
         (click)="deleteTodo()"
         ><img src="assets/svgs/trash.svg"

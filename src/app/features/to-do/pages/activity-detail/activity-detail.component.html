@@ -11,6 +11,7 @@
         </span>
         <inline-edit
           #inlineEdit
+          data-cy="todo-title"
           [viewDisplay]="viewDisplayTemplate"
           [value]="f['title'].value"
           class="inline-edit"
@@ -79,7 +80,7 @@
 </div>
 
 <ng-template #viewDisplayTemplate>
-  <span data-cy="todo-title">{{ f["title"].value }}</span>
+  <span>{{ f["title"].value }}</span>
 </ng-template>
 
 <ng-template #hasTodos>
