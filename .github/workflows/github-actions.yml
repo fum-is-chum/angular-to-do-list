@@ -18,7 +18,7 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      run: npm install -g pnpm && pnpm install && ng add angular-cli-ghpages
+      run: npm install -g pnpm && pnpm install && node_modules/.bin/ng add angular-cli-ghpages
 
     - name: Run tests
       run: pnpm test:headless
