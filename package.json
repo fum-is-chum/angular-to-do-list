@@ -4,10 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href=/angular-to-do-list",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
