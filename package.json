@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=/angular-to-do-list/",
+    "build": "ng build --base-href=/angular-to-do-list/ --deploy-url=https://fum-is-chum.github.io/angular-to-do-list",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "ng deploy --base-href=/angular-to-do-list/",
