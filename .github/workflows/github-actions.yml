@@ -19,30 +19,8 @@ jobs:
       with:
         node-version: 18
 
-    - name: Install PNPM
-      run: npm install -g pnpm
-
-    - name: Cache node modules
-      id: cache-pnpm
-      uses: actions/cache@v3
-      env:
-        cache-name: cache-node-modules
-      with:
-        # pnpm cache files are stored in `~/.pnpm` on Linux/macOS
-        path: ~/.pnpm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
-
-    - if: ${{ steps.cache-pnpm.outputs.cache-hit != 'true' }}
-      name: List the state of node modules
-      continue-on-error: true
-      run: pnpm list
-
     - name: Install dependencies
-      run: pnpm install
+      run: npm install -g pnpm && pnpm install
 
     - name: Run tests
       run: pnpm run test:headless
