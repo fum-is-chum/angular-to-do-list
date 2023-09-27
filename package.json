@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href https://fum-is-chum.github.io/angular-to-do-list/",
+    "build": "ng build --base-href=/angular-to-do-list/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href=https://fum-is-chum.github.io/angular-to-do-list/",
+    "deploy": "ng deploy --base-href=/angular-to-do-list/",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
