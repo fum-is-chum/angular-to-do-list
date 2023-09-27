@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { AppHeaderModule } from './common-components/app-header/app-header.module';
 import { NotificationAlertModule } from './common-components/notification-alert/notification-alert.module';
 import { HttpInterceptorService } from './utils/http-interceptor';
-
 registerLocaleData(localeId, 'id');
 @NgModule({
   declarations: [
