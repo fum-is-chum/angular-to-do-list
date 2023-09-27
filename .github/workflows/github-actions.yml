@@ -21,10 +21,10 @@ jobs:
       run: npm install -g pnpm && pnpm install && npm install -g angular-cli-ghpages
 
     - name: Run tests
-      run: pnpm test:headless
+      run: pnpm run test:headless
 
     - name: Build
-      run: pnpm build
+      run: pnpm run build
 
     - name: Deploy
       if: success()
