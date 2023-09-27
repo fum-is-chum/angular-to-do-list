@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotificationAlertComponent } from './notification-alert.component';
+import { CommonModule } from "@angular/common";
+import { NgbToastModule } from "@ng-bootstrap/ng-bootstrap";
+import { NotificationAlertService } from "./service/notification-alert.service";
 
 describe('NotificationAlertComponent', () => {
   let component: NotificationAlertComponent;
@@ -8,9 +11,14 @@ describe('NotificationAlertComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotificationAlertComponent ]
+      declarations: [NotificationAlertComponent],
+      imports: [
+        CommonModule,
+        NgbToastModule
+      ],
+      providers: [NotificationAlertService]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

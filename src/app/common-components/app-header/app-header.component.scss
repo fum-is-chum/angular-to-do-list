@@ -2,6 +2,8 @@
 .header {
   background-color: #16abf8;
   width: 100%;
+  @include padding-top(3rem);
+  @include padding-bottom(3rem);
   .header-container {
     .header-title {
       @include font-size(24px);

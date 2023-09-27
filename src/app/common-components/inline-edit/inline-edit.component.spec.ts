@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InlineEditComponent } from './inline-edit.component';
+import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { CommonDirectivesModule } from "src/app/common-directives/common-directives.module";
 
 describe('InlineEditComponent', () => {
   let component: InlineEditComponent;
@@ -8,7 +11,13 @@ describe('InlineEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InlineEditComponent ]
+      declarations: [ InlineEditComponent ],
+      imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonDirectivesModule
+      ],
     })
     .compileComponents();
   });

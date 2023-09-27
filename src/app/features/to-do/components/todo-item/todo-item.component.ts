@@ -8,7 +8,7 @@ import { Todo } from "../../models/to-do.model";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todo!: Todo;
+  @Input() todo: Todo = new Todo();
   @Output() onDelete = new EventEmitter<void>();
   @Output() onToggle = new EventEmitter<void>();
   @Output() onEdit = new EventEmitter<void>();

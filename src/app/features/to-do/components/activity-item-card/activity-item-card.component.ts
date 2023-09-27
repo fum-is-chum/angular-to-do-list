@@ -7,7 +7,7 @@ import { Activity } from '../../models/activity.model';
   styleUrls: ['./activity-item-card.component.scss']
 })
 export class ActivityItemCardComponent implements OnInit {
-  @Input() activity!: Activity;
+  @Input() activity: Activity = new Activity();
   @Output() onDeleted = new EventEmitter<void>();
   constructor(
     private _router: Router,

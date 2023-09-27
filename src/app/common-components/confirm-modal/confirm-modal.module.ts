@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from './confirm-modal.component';
 import { PrimaryButtonModule } from '../primary-button/primary-button.module';
 
@@ -13,6 +13,6 @@ import { PrimaryButtonModule } from '../primary-button/primary-button.module';
     NgbModalModule,
     PrimaryButtonModule
   ],
-  providers: []
+  providers: [NgbModal, NgbActiveModal]
 })
 export class ConfirmModalModule { }

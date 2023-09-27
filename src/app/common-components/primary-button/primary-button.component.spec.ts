@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrimaryButtonComponent } from './primary-button.component';
+import { CommonModule } from "@angular/common";
 
 describe('PrimaryButtonComponent', () => {
   let component: PrimaryButtonComponent;
@@ -8,7 +9,10 @@ describe('PrimaryButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrimaryButtonComponent ]
+      declarations: [ PrimaryButtonComponent ],
+      imports: [
+        CommonModule,
+      ],
     })
     .compileComponents();
   });
