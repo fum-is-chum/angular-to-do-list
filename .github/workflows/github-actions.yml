@@ -6,7 +6,7 @@ on:
     - main
 
 jobs:
-  unit-test-and-build:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
