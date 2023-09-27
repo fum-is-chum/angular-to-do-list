@@ -28,4 +28,4 @@ jobs:
 
     - name: Deploy
       if: success()
-      run: pnpm deploy
+      run: pnpm run deploy
