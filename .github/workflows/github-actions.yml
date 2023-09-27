@@ -18,7 +18,7 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      run: npm install -g pnpm && npm install -g angular-cli-ghpages && pnpm install
+      run: npm install -g pnpm && pnpm install && ng add angular-cli-ghpages
 
     - name: Run tests
       run: pnpm test:headless
@@ -28,4 +28,8 @@ jobs:
 
     - name: Deploy
       if: success()
-      run: pnpm run deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist/to-do-list
+        enable_jekyll: true
