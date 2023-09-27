@@ -7,7 +7,7 @@
     "build": "ng build --base-href https://fum-is-chum.github.io/angular-to-do-list/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "angular-cli-ghpages --dir=dist/to-do-list --no-silent",
+    "deploy": "ng deploy --base-href=/angular-to-do-list/",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
