@@ -1,0 +1,8 @@
+# To store node_modules, in case code modification without library modification
+FROM node:18-alpine
+
+WORKDIR /app
+COPY . .
+
+RUN npm install -g pnpm
+RUN pnpm i --frozen-lockfile
