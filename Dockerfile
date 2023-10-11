@@ -9,4 +9,3 @@ COPY default.conf /etc/nginx/conf.d/
 COPY --from=builder /app/dist/to-do-list /usr/share/nginx/html
 
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
