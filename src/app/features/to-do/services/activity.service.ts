@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { Activity, ActivityList } from "../models/activity.model";
-import { environment } from "src/environments/environment";
+import { Injectable } from "@angular/core";
+import { Activity } from "../models/activity.model";
+import { ApiResponse } from "../models/api-response.model";
 
 @Injectable()
 export class ActivityService {
@@ -11,11 +11,11 @@ export class ActivityService {
 
   }
 
-  getActivities(): Promise<ActivityList> {
+  getActivities(): Promise<Activity[]> {
     return new Promise((resolve, reject) => {
-      this._http.get<ActivityList>(`/activity-groups?email=${encodeURI(environment.email)}`, { responseType: 'json' })
+      this._http.get<ApiResponse>(`/activity-groups`, { responseType: 'json' })
         .subscribe({
-          next: (resp) => resolve(resp),
+          next: (resp) => resolve(resp.data),
           error: (err) => reject(err),
           complete: () => { }
         });
@@ -24,7 +24,18 @@ export class ActivityService {
 
   getActivity(id: number): Promise<Activity> {
     return new Promise((resolve, reject) => {
-      this._http.get<Activity>(`/activity-groups/${id}`, { responseType: 'json' })
+      this._http.get<ApiResponse>(`/activity-groups/${id}`, { responseType: 'json' })
+        .subscribe({
+          next: (resp) => resolve(resp.data),
+          error: (err) => reject(err),
+          complete: () => { }
+        });
+    });
+  }
+
+  addActivity(data: Activity): Promise<ApiResponse> {
+    return new Promise((resolve, reject) => {
+      this._http.post<ApiResponse>(`/activity-groups`, data, { responseType: 'json' })
         .subscribe({
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
@@ -33,9 +44,9 @@ export class ActivityService {
     });
   }
 
-  addActivity(data: Activity): Promise<Activity> {
+  removeActivity(id: number): Promise<ApiResponse> {
     return new Promise((resolve, reject) => {
-      this._http.post<Activity>(`/activity-groups`, data, { responseType: 'json' })
+      this._http.delete<ApiResponse>(`/activity-groups/${id}`, { responseType: 'json' })
         .subscribe({
           next: (resp) => resolve(resp),
           error: (err) => reject(err),
@@ -44,20 +55,9 @@ export class ActivityService {
     });
   }
 
-  removeActivity(id: number): Promise<void> {
+  updateActivityTitle(title: string, id: number): Promise<ApiResponse> {
     return new Promise((resolve, reject) => {
-      this._http.delete<void>(`/activity-groups/${id}`, { responseType: 'json' })
-        .subscribe({
-          next: (resp) => resolve(resp),
-          error: (err) => reject(err),
-          complete: () => { }
-        });
-    });
-  }
-
-  updateActivityTitle(title: string, id: number): Promise<Activity> {
-    return new Promise((resolve, reject) => {
-      this._http.patch<Activity>(`/activity-groups/${id}`, { title }, { responseType: 'json' })
+      this._http.patch<ApiResponse>(`/activity-groups/${id}`, { title }, { responseType: 'json' })
         .subscribe({
           next: (resp) => resolve(resp),
           error: (err) => reject(err),

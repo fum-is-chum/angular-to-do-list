@@ -58,6 +58,7 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
   ) {
     this.activity = this._route.snapshot.data['activity'];
     this.form = this._fb.group(this.activity);
+    console.log(this.activity)
     this.todoListSubject = new BehaviorSubject<Todo[]>([]);
     this.initTodoList();
   }
@@ -140,7 +141,7 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
           });
           break;
         case 'sort-unfinished':
-          todos.sort((a, b) => b.is_active! - a.is_active!);
+          todos.sort((a, b) => Number(b.is_active) - Number(a.is_active));
           break;
       }
       this.todoListSubject.next(todos);
@@ -176,7 +177,7 @@ export class ActivityDetailComponent implements OnInit, OnDestroy {
         });
         break;
       case 'sort-unfinished':
-        this.todoListSubject.value.sort((a, b) => b.is_active! - a.is_active!);
+        this.todoListSubject.value.sort((a, b) => Number(b.is_active) - Number(a.is_active));
         break;
     }
 

@@ -32,7 +32,7 @@ export class ActivityPageComponent implements OnInit, OnDestroy {
     try {
       this.activityIsLoading = true;
       const newActivityList = await this._activityService.getActivities();
-      this.activitySubject.next(newActivityList.data.reverse() ?? []);
+      this.activitySubject.next(newActivityList);
     } catch (error) {
       console.error(error);
     } finally {

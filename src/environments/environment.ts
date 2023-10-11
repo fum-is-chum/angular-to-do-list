@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  email: 'alvinardiansyah2002@gmail.com',
-  apiUrl: 'https://todo.api.devcode.gethired.id'
+  apiUrl: 'http://localhost:8000'
 };
 
 /*

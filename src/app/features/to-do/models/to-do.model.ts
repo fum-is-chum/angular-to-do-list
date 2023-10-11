@@ -6,7 +6,7 @@ export enum PRIORITY {
   VERY_LOW = "very-low"
 }
 export class Todo {
-  is_active: number;
+  is_active: boolean;
   priority: PRIORITY;
   created_at?: string;
   updated_at?: string;
@@ -20,7 +20,7 @@ export class Todo {
       this.created_at = data.created_at;
       this.updated_at = data.updated_at;
     }
-    this.is_active = data.is_active ?? 1;
+    this.is_active = data.is_active ?? true;
     this.priority = data.priority || 'very-high';
     this.activity_group_id = data.activity_group_id || null;
     this.title = data.title || null;

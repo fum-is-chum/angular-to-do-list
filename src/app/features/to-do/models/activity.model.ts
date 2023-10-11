@@ -4,7 +4,6 @@ import { Todo } from "./to-do.model";
 export class Activity {
   id?: number;
   title: string | null;
-  email: string | null;
   created_at?: string;
   modified_at?: string;
   todo_items?: Todo[];
@@ -17,14 +16,5 @@ export class Activity {
       this.todo_items = data.todo_items;
     }
     this.title = data.title || 'New Activity';
-    this.email = data.email || environment.email;
   }
 }
-
-export interface ActivityList {
-  total: number;
-  limit: number;
-  skip: number;
-  data: Activity[];
-}
-

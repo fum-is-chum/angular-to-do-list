@@ -48,7 +48,7 @@ export class TodoListComponent implements OnInit {
 
   async updateIsActive(idx: number): Promise<void> {
     let todo = this.todos![idx];
-    const newTodo = Object.assign({}, { ...todo, is_active: Math.abs(todo.is_active - 1) });
+    const newTodo = Object.assign({}, { ...todo, is_active: !todo.is_active });
     try {
       await this._todoService.updateTodo(newTodo);
       this.todos![idx] = newTodo;

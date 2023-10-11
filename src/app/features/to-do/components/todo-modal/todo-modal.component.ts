@@ -1,4 +1,3 @@
-import { } from "@angular/compiler";
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -60,9 +59,9 @@ export class TodoModalComponent implements OnInit {
       this.isLoading = true;
       const todo = this.form.getRawValue();
       if (this.action === TODO_ACTION.ADD) {
-        const response = await this._todoService.addTodo(todo);
+        await this._todoService.addTodo(todo);
       } else {
-        const response = await this._todoService.updateTodo(todo);
+        await this._todoService.updateTodo(todo);
       }
       this.close();
     } catch (error) {
